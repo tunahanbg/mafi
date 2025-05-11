@@ -16,6 +16,10 @@
         "source": "com.mafi.app-main-34:/layout/fragment_home.xml"
     },
     {
+        "merged": "com.mafi.app-mergeDebugResources-31:/layout/fragment_register.xml",
+        "source": "com.mafi.app-main-34:/layout/fragment_register.xml"
+    },
+    {
         "merged": "com.mafi.app-mergeDebugResources-31:/layout/fragment_profile.xml",
         "source": "com.mafi.app-main-34:/layout/fragment_profile.xml"
     },

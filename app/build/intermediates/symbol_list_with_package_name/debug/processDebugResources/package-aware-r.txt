@@ -3239,6 +3239,7 @@ id button_edit
 id button_login
 id button_logout
 id button_play_pause
+id button_register
 id button_save_content
 id button_share
 id cache_measures
@@ -3315,12 +3316,14 @@ id easeOut
 id east
 id edge
 id edit_query
+id edit_text_confirm_password
 id edit_text_content_url
 id edit_text_description
 id edit_text_email
 id edit_text_id
 id edit_text_password
 id edit_text_title
+id edit_text_username
 id elastic
 id embed
 id end
@@ -3633,6 +3636,7 @@ id text_content_title
 id text_content_type
 id text_content_url
 id text_content_url_label
+id text_input_confirm_password
 id text_input_content_url
 id text_input_description
 id text_input_email
@@ -3641,6 +3645,8 @@ id text_input_error_icon
 id text_input_password
 id text_input_start_icon
 id text_input_title
+id text_input_username
+id text_login
 id text_register
 id text_title
 id text_view_about
@@ -3841,6 +3847,7 @@ layout fragment_content_manager
 layout fragment_home
 layout fragment_login
 layout fragment_profile
+layout fragment_register
 layout fragment_settings
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity

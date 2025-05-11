@@ -4,7 +4,7 @@
             "outputFile": "com.mafi.app.test.app-mergeDebugAndroidTestResources-2:/values-v18/values-v18.xml",
             "map": [
                 {
-                    "source": "/Users/tng/.gradle/caches/8.10.2/transforms/08bc16a02c8c830334c02c90e8a994a7/transformed/core-1.6.1/res/values-v18/values.xml",
+                    "source": "/Users/tunahanbg/.gradle/caches/8.10.2/transforms/08bc16a02c8c830334c02c90e8a994a7/transformed/core-1.6.1/res/values-v18/values.xml",
                     "from": {
                         "startLines": "4,12",
                         "startColumns": "0,0",

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class LoginFragment extends Fragment {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogin;
+    private TextView textViewRegister;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +39,7 @@ public class LoginFragment extends Fragment {
         editTextEmail = view.findViewById(R.id.edit_text_email);
         editTextPassword = view.findViewById(R.id.edit_text_password);
         buttonLogin = view.findViewById(R.id.button_login);
+        textViewRegister = view.findViewById(R.id.text_register);
 
         // ViewModel'i bağla
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
@@ -70,6 +73,15 @@ public class LoginFragment extends Fragment {
             String email = editTextEmail.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
             viewModel.login(email, password);
+        });
+
+        //- Kayıt ol butonuna tıklama işlemi
+        textViewRegister.setOnClickListener(v -> {
+            if (getActivity() != null) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new RegisterFragment())
+                        .commit();
+            }
         });
     }
 }

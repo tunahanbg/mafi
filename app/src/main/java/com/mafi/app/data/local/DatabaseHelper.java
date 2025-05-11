@@ -3,12 +3,13 @@ package com.mafi.app.data.local;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    // Veritabanı versiyonu
-    private static final int DATABASE_VERSION = 1;
+    private static final String TAG = "DatabaseHelper";
 
-    // Veritabanı adı
+    // Veritabanı versiyonu ve adı
+    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "mafi_content.db";
 
     // Tablo adları
@@ -41,27 +42,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Tablo oluşturma SQL ifadeleri
     private static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + COLUMN_USERNAME + " TEXT,"
-            + COLUMN_EMAIL + " TEXT,"
-            + COLUMN_PASSWORD + " TEXT,"
+            + COLUMN_USERNAME + " TEXT NOT NULL,"
+            + COLUMN_EMAIL + " TEXT UNIQUE NOT NULL,"
+            + COLUMN_PASSWORD + " TEXT NOT NULL,"
             + COLUMN_PROFILE_PICTURE_URL + " TEXT,"
             + COLUMN_CREATED_AT + " INTEGER,"
-            + COLUMN_IS_ACTIVE + " INTEGER" + ")";
+            + COLUMN_IS_ACTIVE + " INTEGER DEFAULT 1" + ")";
 
     private static final String CREATE_TABLE_CONTENTS = "CREATE TABLE " + TABLE_CONTENTS + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + COLUMN_TITLE + " TEXT,"
+            + COLUMN_TITLE + " TEXT NOT NULL,"
             + COLUMN_DESCRIPTION + " TEXT,"
-            + COLUMN_CONTENT_TYPE_ID + " INTEGER,"
+            + COLUMN_CONTENT_TYPE_ID + " INTEGER NOT NULL,"
             + COLUMN_CONTENT_URL + " TEXT,"
-            + COLUMN_USER_ID + " INTEGER,"
+            + COLUMN_USER_ID + " INTEGER NOT NULL,"
             + COLUMN_CREATED_AT + " INTEGER,"
             + "FOREIGN KEY(" + COLUMN_CONTENT_TYPE_ID + ") REFERENCES " + TABLE_CONTENT_TYPES + "(" + COLUMN_ID + "),"
             + "FOREIGN KEY(" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_ID + ")" + ")";
 
     private static final String CREATE_TABLE_CONTENT_TYPES = "CREATE TABLE " + TABLE_CONTENT_TYPES + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + COLUMN_NAME + " TEXT,"
+            + COLUMN_NAME + " TEXT NOT NULL,"
             + COLUMN_ICON_RESOURCE + " TEXT" + ")";
 
     // Singleton instance
@@ -81,22 +82,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Tabloları oluştur
-        db.execSQL(CREATE_TABLE_CONTENT_TYPES);
-        db.execSQL(CREATE_TABLE_USERS);
-        db.execSQL(CREATE_TABLE_CONTENTS);
+        try {
+            // Tablolar belirli bir sırayla oluşturulmalı (foreign key bağımlılıkları nedeniyle)
+            db.execSQL(CREATE_TABLE_CONTENT_TYPES);
+            db.execSQL(CREATE_TABLE_USERS);
+            db.execSQL(CREATE_TABLE_CONTENTS);
 
-        // Varsayılan içerik tiplerini ekle
-        insertDefaultContentTypes(db);
+            // Varsayılan içerik tiplerini ekle
+            insertDefaultContentTypes(db);
+            Log.i(TAG, "Veritabanı tabloları ve varsayılan veriler başarıyla oluşturuldu.");
+        } catch (Exception e) {
+            Log.e(TAG, "Veritabanı oluşturma hatası: " + e.getMessage());
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Basit bir güncelleme stratejisi - tabloları sil ve yeniden oluştur
+        Log.w(TAG, "Veritabanı sürümü yükseltiliyor: " + oldVersion + " -> " + newVersion);
+
+        // Veri kaybını önlemek için daha sofistike bir yaklaşım kullanabilirsiniz
+        // Basit yaklaşım: Tabloları sil ve yeniden oluştur
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTENTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTENT_TYPES);
         onCreate(db);
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        // Foreign key kısıtlamalarını etkinleştir
+        if (!db.isReadOnly()) {
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
     }
 
     private void insertDefaultContentTypes(SQLiteDatabase db) {

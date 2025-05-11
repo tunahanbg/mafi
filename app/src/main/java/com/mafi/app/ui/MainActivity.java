@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mafi.app.R;
+import com.mafi.app.data.local.DatabaseHelper;
 import com.mafi.app.data.local.SharedPreferencesManager;
 import com.mafi.app.ui.fragment.HomeFragment;
 import com.mafi.app.ui.fragment.LoginFragment;
@@ -20,11 +21,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private BottomNavigationView bottomNavigation;
     private SharedPreferencesManager preferencesManager;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Veritabanını başlat
+        dbHelper = DatabaseHelper.getInstance(this);
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(this);
