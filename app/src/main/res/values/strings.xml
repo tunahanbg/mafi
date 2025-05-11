@@ -11,4 +11,9 @@
     <string name="button_register">Kayıt Ol</string>
     <string name="button_add_content">İçerik Ekle</string>
     <string name="content_type_icon">İçerik Tipi İkonu</string>
+    <string name="button_summarize">Özetle</string>
+    <string name="button_expand">Genişlet</string>
+    <string name="hint_content">İçeriğinizi buraya yazın...</string>
+    <string name="placeholder_button_3">Buton 3</string>
+    <string name="placeholder_button_4">Buton 4</string>
 </resources>

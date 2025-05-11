@@ -118,8 +118,16 @@ public class HomeFragment extends Fragment implements ContentAdapter.OnItemClick
 
     @Override
     public void onItemClick(Content content) {
-        // İçerik detayını göster
-        Toast.makeText(getContext(), "İçerik: " + content.getTitle(), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "İçeriğe tıklandı: " + content.getTitle() + ", ID: " + content.getId());
+
+        // TextEditorFragment'a geçiş
+        if (getActivity() != null) {
+            TextEditorFragment fragment = TextEditorFragment.newInstance(content.getId());
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override

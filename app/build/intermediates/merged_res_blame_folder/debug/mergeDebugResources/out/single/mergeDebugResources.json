@@ -44,16 +44,20 @@
         "source": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-main-34:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-debug-32:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-main-34:/mipmap-xxxhdpi/ic_launcher.webp"
-    },
-    {
         "merged": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-debug-32:/menu_bottom_navigation_menu.xml.flat",
         "source": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-main-34:/menu/bottom_navigation_menu.xml"
     },
     {
+        "merged": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-debug-32:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-main-34:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
         "merged": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-debug-32:/drawable_ic_image.xml.flat",
         "source": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-main-34:/drawable/ic_image.xml"
+    },
+    {
+        "merged": "com.mafi.app-debug-32:/layout_fragment_text_editor.xml.flat",
+        "source": "com.mafi.app-main-34:/layout/fragment_text_editor.xml"
     },
     {
         "merged": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-debug-32:/mipmap-xxhdpi_ic_launcher.webp.flat",
@@ -136,8 +140,8 @@
         "source": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-main-34:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.mafi.app-debug-32:/layout_fragment_home.xml.flat",
-        "source": "com.mafi.app-main-34:/layout/fragment_home.xml"
+        "merged": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-debug-32:/layout_fragment_text_editor.xml.flat",
+        "source": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-main-34:/layout/fragment_text_editor.xml"
     },
     {
         "merged": "/Users/tunahanbg/.gradle/daemon/8.10.2/com.mafi.app-debug-32:/drawable_ic_launcher_foreground.xml.flat",
