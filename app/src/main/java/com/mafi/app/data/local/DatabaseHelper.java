@@ -9,7 +9,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "DatabaseHelper";
 
     // Veritabanı versiyonu ve adı
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "mafi_content.db";
 
     // Tablo adları
@@ -83,29 +83,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            // Tablolar belirli bir sırayla oluşturulmalı (foreign key bağımlılıkları nedeniyle)
+            Log.d(TAG, "Veritabanı tabloları oluşturuluyor...");
+            // Tabloları oluştur
             db.execSQL(CREATE_TABLE_CONTENT_TYPES);
             db.execSQL(CREATE_TABLE_USERS);
             db.execSQL(CREATE_TABLE_CONTENTS);
 
             // Varsayılan içerik tiplerini ekle
             insertDefaultContentTypes(db);
-            Log.i(TAG, "Veritabanı tabloları ve varsayılan veriler başarıyla oluşturuldu.");
+            Log.d(TAG, "Veritabanı tabloları başarıyla oluşturuldu");
         } catch (Exception e) {
-            Log.e(TAG, "Veritabanı oluşturma hatası: " + e.getMessage());
+            Log.e(TAG, "Veritabanı oluşturma hatası: " + e.getMessage(), e);
         }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(TAG, "Veritabanı sürümü yükseltiliyor: " + oldVersion + " -> " + newVersion);
+        Log.d(TAG, "Veritabanı yükseltiliyor " + oldVersion + " -> " + newVersion);
 
-        // Veri kaybını önlemek için daha sofistike bir yaklaşım kullanabilirsiniz
-        // Basit yaklaşım: Tabloları sil ve yeniden oluştur
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTENTS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTENT_TYPES);
-        onCreate(db);
+        try {
+            // Tabloları sil
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTENTS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTENT_TYPES);
+
+            // Tabloları yeniden oluştur
+            onCreate(db);
+            Log.d(TAG, "Veritabanı başarıyla yükseltildi");
+        } catch (Exception e) {
+            Log.e(TAG, "Veritabanı yükseltme hatası: " + e.getMessage(), e);
+        }
     }
 
     @Override
@@ -118,11 +125,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void insertDefaultContentTypes(SQLiteDatabase db) {
-        // ContentType sabitleri için varsayılan değerleri ekle
-        db.execSQL("INSERT INTO " + TABLE_CONTENT_TYPES + "(" + COLUMN_ID + ", " + COLUMN_NAME + ", " + COLUMN_ICON_RESOURCE + ") VALUES "
-                + "(1, 'Metin', 'ic_text'), "
-                + "(2, 'Görüntü', 'ic_image'), "
-                + "(3, 'Ses', 'ic_audio'), "
-                + "(4, 'Video', 'ic_video')");
+        try {
+            db.execSQL("INSERT INTO " + TABLE_CONTENT_TYPES + "(" + COLUMN_ID + ", " + COLUMN_NAME + ", " + COLUMN_ICON_RESOURCE + ") VALUES "
+                    + "(1, 'Metin', 'ic_text'), "
+                    + "(2, 'Görüntü', 'ic_image'), "
+                    + "(3, 'Ses', 'ic_audio'), "
+                    + "(4, 'Video', 'ic_video')");
+            Log.d(TAG, "Varsayılan içerik tipleri eklendi");
+        } catch (Exception e) {
+            Log.e(TAG, "İçerik tipleri ekleme hatası: " + e.getMessage(), e);
+        }
     }
 }

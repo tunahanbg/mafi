@@ -1,6 +1,7 @@
 package com.mafi.app.ui.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.mafi.app.ui.viewmodel.ContentViewModel;
 import com.mafi.app.utils.NotificationHelper;
 
 public class ContentManagerFragment extends Fragment {
+    private static final String TAG = "ContentManagerFragment";
 
     private ContentViewModel viewModel;
     private EditText editTextTitle;
@@ -38,6 +40,7 @@ public class ContentManagerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated başladı");
 
         // View elemanlarını bağla
         editTextTitle = view.findViewById(R.id.edit_text_title);
@@ -54,7 +57,8 @@ public class ContentManagerFragment extends Fragment {
 
         // Gözlemcileri ayarla
         viewModel.getOperationSuccess().observe(getViewLifecycleOwner(), success -> {
-            if (success) {
+            if (success != null && success) {
+                Log.d(TAG, "İçerik kaydetme başarılı");
                 // İşlem başarılı, kullanıcıya bildir ve ana sayfaya dön
                 Toast.makeText(getContext(), "İçerik başarıyla kaydedildi", Toast.LENGTH_SHORT).show();
 
@@ -70,18 +74,25 @@ public class ContentManagerFragment extends Fragment {
 
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
             if (errorMessage != null && !errorMessage.isEmpty()) {
+                Log.e(TAG, "Hata: " + errorMessage);
                 Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
 
         // Kaydet butonuna tıklama işlemi
-        buttonSaveContent.setOnClickListener(v -> saveContent());
+        buttonSaveContent.setOnClickListener(v -> {
+            Log.d(TAG, "Kaydet butonuna tıklandı");
+            saveContent();
+        });
     }
 
     private void saveContent() {
+        // Form verilerini al
         String title = editTextTitle.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
         String contentUrl = editTextContentUrl.getText().toString().trim();
+
+        Log.d(TAG, "İçerik kaydediliyor. Başlık: " + title);
 
         // Validasyon kontrolleri
         if (title.isEmpty()) {
@@ -109,6 +120,8 @@ public class ContentManagerFragment extends Fragment {
         } else {
             contentTypeId = ContentType.TYPE_TEXT; // Varsayılan
         }
+
+        Log.d(TAG, "İçerik tipi: " + contentTypeId);
 
         // İçeriği ViewModel aracılığıyla kaydet
         viewModel.createContent(title, description, contentTypeId, contentUrl);

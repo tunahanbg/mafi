@@ -1,10 +1,12 @@
 package com.mafi.app.ui.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,12 +25,14 @@ import com.mafi.app.ui.viewmodel.HomeViewModel;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment implements ContentAdapter.OnItemClickListener {
+    private static final String TAG = "HomeFragment";
 
     private HomeViewModel viewModel;
     private RecyclerView recyclerViewContent;
     private ContentAdapter contentAdapter;
     private ProgressBar progressBar;
     private FloatingActionButton fabAddContent;
+    private TextView emptyTextView; // Boş durum için TextView (eğer layoutta yoksa ekleyin)
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,10 +44,15 @@ public class HomeFragment extends Fragment implements ContentAdapter.OnItemClick
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Log.d(TAG, "onViewCreated başladı");
+
         // View elemanlarını bağla
         recyclerViewContent = view.findViewById(R.id.recycler_view_content);
         progressBar = view.findViewById(R.id.progress_bar);
         fabAddContent = view.findViewById(R.id.fab_add_content);
+
+
+        emptyTextView = view.findViewById(R.id.text_empty);
 
         // RecyclerView'ı ayarla
         recyclerViewContent.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -56,7 +65,20 @@ public class HomeFragment extends Fragment implements ContentAdapter.OnItemClick
 
         // Gözlemcileri ayarla
         viewModel.getContentList().observe(getViewLifecycleOwner(), contents -> {
+            Log.d(TAG, "ContentList değişti: " + (contents != null ? contents.size() : 0) + " adet içerik");
+
+            if (contents == null) {
+                contents = new ArrayList<>();
+            }
+
             contentAdapter.updateContentList(contents);
+
+            // Boş durum kontrolü - yalnızca içerik yoksa mesaj göster
+            if (contents.isEmpty()) {
+                emptyTextView.setVisibility(View.VISIBLE);
+            } else {
+                emptyTextView.setVisibility(View.GONE);
+            }
         });
 
         viewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
@@ -65,13 +87,14 @@ public class HomeFragment extends Fragment implements ContentAdapter.OnItemClick
 
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
             if (errorMessage != null && !errorMessage.isEmpty()) {
+                Log.e(TAG, "Hata: " + errorMessage);
                 Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
 
         // İçerik ekleme butonu işlemi
         fabAddContent.setOnClickListener(v -> {
-            // ContentManagerFragment'a geçiş
+            Log.d(TAG, "İçerik ekle butonuna tıklandı");
             if (getActivity() != null) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new ContentManagerFragment())
@@ -80,25 +103,28 @@ public class HomeFragment extends Fragment implements ContentAdapter.OnItemClick
             }
         });
 
-        // İçerikleri yükle
-        viewModel.loadAllContents();
+        // İçerikleri yükle - artık bu, kullanıcının kendi içeriklerini getirir
+        Log.d(TAG, "İçerikler yükleniyor...");
+        viewModel.loadUserContents();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Sayfaya geri dönüldüğünde içerikleri yenile
+        Log.d(TAG, "onResume - İçerikler yenileniyor");
+        viewModel.loadUserContents();
     }
 
     @Override
     public void onItemClick(Content content) {
-        // İçerik detayını dialog olarak göster
-        // Örnek:
+        // İçerik detayını göster
         Toast.makeText(getContext(), "İçerik: " + content.getTitle(), Toast.LENGTH_SHORT).show();
-
-        // Gerçek uygulamada burada bir dialog gösterebiliriz
-        // DialogFragment contentDetailDialog = ContentDetailDialogFragment.newInstance(content.getId());
-        // contentDetailDialog.show(getChildFragmentManager(), "content_detail");
     }
 
     @Override
     public void onItemLongClick(Content content, View view) {
-        // Uzun tıklama ile içerik için işlemler (silme, düzenleme vb.)
-        // Örnek:
-        Toast.makeText(getContext(), "İçerik için işlemler: " + content.getTitle(), Toast.LENGTH_SHORT).show();
+        // İçerik işlemleri (silme, düzenleme vb.)
+        Toast.makeText(getContext(), "İçerik İşlemleri: " + content.getTitle(), Toast.LENGTH_SHORT).show();
     }
 }

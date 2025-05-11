@@ -3,24 +3,24 @@
 3    package="com.mafi.app.test" >
 4
 5    <uses-sdk
-5-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:5:5-74
+5-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:5:5-74
 6        android:minSdkVersion="28"
-6-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:5:15-41
+6-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:5:15-41
 7        android:targetSdkVersion="35" />
-7-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:5:42-71
+7-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:5:42-71
 8
 9    <instrumentation
-9-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:11:5-15:62
+9-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:11:5-15:62
 10        android:name="androidx.test.runner.AndroidJUnitRunner"
-10-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:11:22-76
+10-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:11:22-76
 11        android:functionalTest="false"
-11-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:14:22-52
+11-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:14:22-52
 12        android:handleProfiling="false"
-12-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:13:22-53
+12-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:13:22-53
 13        android:label="Tests for com.mafi.app"
-13-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:15:22-60
+13-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:15:22-60
 14        android:targetPackage="com.mafi.app" />
-14-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:12:22-58
+14-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:12:22-58
 15
 16    <queries>
 16-->[androidx.test:runner:1.6.1] /Users/tunahanbg/.gradle/caches/8.10.2/transforms/07061d6168c011353e549c75ef61c6ec/transformed/runner-1.6.1/AndroidManifest.xml:24:5-28:15
@@ -40,12 +40,12 @@
 22-->[androidx.test:core:1.6.1] /Users/tunahanbg/.gradle/caches/8.10.2/transforms/08bc16a02c8c830334c02c90e8a994a7/transformed/core-1.6.1/AndroidManifest.xml:24:22-69
 23
 24    <application
-24-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:7:5-9:19
+24-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:7:5-9:19
 25        android:debuggable="true"
 26        android:extractNativeLibs="false" >
 27        <uses-library android:name="android.test.runner" />
-27-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:8:9-60
-27-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest15853614673601219577.xml:8:23-57
+27-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:8:9-60
+27-->/Users/tunahanbg/Downloads/mafi/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2719117138302217629.xml:8:23-57
 28
 29        <activity
 29-->[androidx.test:core:1.6.1] /Users/tunahanbg/.gradle/caches/8.10.2/transforms/08bc16a02c8c830334c02c90e8a994a7/transformed/core-1.6.1/AndroidManifest.xml:27:9-34:20
