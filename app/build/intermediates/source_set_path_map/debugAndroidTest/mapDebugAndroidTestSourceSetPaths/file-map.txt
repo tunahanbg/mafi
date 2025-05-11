@@ -1,0 +1,5 @@
+com.mafi.app.test.app-core-1.6.1-0 /Users/tng/.gradle/caches/8.10.2/transforms/08bc16a02c8c830334c02c90e8a994a7/transformed/core-1.6.1/res
+com.mafi.app.test.app-androidTest-1 /Users/tng/AndroidStudioProjects/mafi/app/build/generated/res/resValues/androidTest/debug
+com.mafi.app.test.app-mergeDebugAndroidTestResources-2 /Users/tng/AndroidStudioProjects/mafi/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.mafi.app.test.app-mergeDebugAndroidTestResources-3 /Users/tng/AndroidStudioProjects/mafi/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.mafi.app.test.app-debugAndroidTest-4 /Users/tng/AndroidStudioProjects/mafi/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources

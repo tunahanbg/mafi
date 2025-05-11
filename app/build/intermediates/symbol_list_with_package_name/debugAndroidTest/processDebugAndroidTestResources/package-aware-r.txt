@@ -1,0 +1,3 @@
+com.mafi.app.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme
